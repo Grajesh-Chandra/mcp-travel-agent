@@ -7,9 +7,9 @@
 [![Ollama](https://img.shields.io/badge/Ollama-qwen3:8b-blue.svg)](https://ollama.ai)
 [![MCP](https://img.shields.io/badge/MCP-Protocol-purple.svg)](https://modelcontextprotocol.io/)
 
-![Voyager AI Demo](https://via.placeholder.com/800x400?text=Voyager+AI+Demo)
+![Voyager AI Demo](public/voyager-demo-banner.svg)
 
----
+
 
 ## 🌟 Overview
 
@@ -24,7 +24,7 @@ Voyager AI is a production-quality demo application showcasing an AI travel conc
 - ⚡ **Agentic Loop** - Multi-step tool calling with up to 8 iterations
 - 🔌 **WebSocket** - Real-time log streaming
 
----
+
 
 ## 🚀 Quick Start
 
@@ -65,7 +65,7 @@ The application will be available at:
 - **Backend API**: http://localhost:3001
 - **WebSocket**: ws://localhost:3001/ws
 
----
+
 
 ## 📁 Project Structure
 
@@ -100,7 +100,7 @@ mcp-travel-agent/
 └── package.json
 ```
 
----
+
 
 ## 🔧 MCP Tools
 
@@ -118,7 +118,7 @@ The demo includes 7 mock MCP tools that simulate travel services:
 
 Each tool simulates 400-1000ms delay for realistic demo behavior.
 
----
+
 
 ## 🖥️ Architecture
 
@@ -154,7 +154,7 @@ Each tool simulates 400-1000ms delay for realistic demo behavior.
 6. Repeat until `end_turn` (max 8 iterations)
 7. Stream final response to client
 
----
+
 
 ## 🎨 Design System
 
@@ -176,7 +176,7 @@ Each tool simulates 400-1000ms delay for realistic demo behavior.
 - **Body**: DM Sans
 - **Code**: JetBrains Mono
 
----
+
 
 ## 📜 Scripts
 
@@ -200,7 +200,7 @@ npm run logs
 bash scripts/check-prereqs.sh
 ```
 
----
+
 
 ## 🔌 API Endpoints
 
@@ -215,7 +215,7 @@ bash scripts/check-prereqs.sh
 | GET | `/api/stats` | Get session statistics |
 | POST | `/api/session/reset` | Reset session |
 
----
+
 
 ## 🔒 Environment Variables
 
@@ -227,7 +227,7 @@ bash scripts/check-prereqs.sh
 | `LOG_LEVEL` | `debug` | Logging level |
 | `NODE_ENV` | `development` | Environment |
 
----
+
 
 ## 🐛 Troubleshooting
 
@@ -258,13 +258,13 @@ npm run stop
 
 The WebSocket connects to `ws://localhost:3001/ws`. Ensure the backend server is running and no firewall is blocking the connection.
 
----
+
 
 ## 📄 License
 
 MIT License - see [LICENSE](LICENSE) for details.
 
----
+
 
 ## 🤝 Contributing
 
@@ -273,13 +273,13 @@ MIT License - see [LICENSE](LICENSE) for details.
 3. Make your changes
 4. Submit a pull request
 
----
+
 
 ## 👨‍💻 Author
 
 **Grajesh Chandra**
 
----
+
 
 ## 🙏 Acknowledgments
 

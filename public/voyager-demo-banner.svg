@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0f1e"/>
+      <stop offset="100%" style="stop-color:#1a1f3e"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#c9a84c"/>
+      <stop offset="50%" style="stop-color:#e8d282"/>
+      <stop offset="100%" style="stop-color:#c9a84c"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bgGrad)"/>
+
+  <!-- Decorative grid lines -->
+  <g stroke="#c9a84c" stroke-opacity="0.1" stroke-width="1">
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="200" y1="0" x2="200" y2="400"/>
+    <line x1="400" y1="0" x2="400" y2="400"/>
+    <line x1="600" y1="0" x2="600" y2="400"/>
+  </g>
+
+  <!-- Globe/world outline -->
+  <circle cx="400" cy="200" r="120" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-opacity="0.3"/>
+  <ellipse cx="400" cy="200" rx="120" ry="40" fill="none" stroke="url(#goldGrad)" stroke-width="1" stroke-opacity="0.2"/>
+  <ellipse cx="400" cy="200" rx="40" ry="120" fill="none" stroke="url(#goldGrad)" stroke-width="1" stroke-opacity="0.2"/>
+
+  <!-- Airplane icon -->
+  <g transform="translate(340, 140)" filter="url(#glow)">
+    <path d="M60 0 L70 25 L120 20 L75 35 L80 60 L60 45 L40 60 L45 35 L0 20 L50 25 Z"
+          fill="url(#goldGrad)" transform="rotate(25, 60, 30)"/>
+  </g>
+
+  <!-- Flight path arc -->
+  <path d="M150 250 Q400 80 650 250" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-dasharray="8,4" stroke-opacity="0.5"/>
+
+  <!-- Destination dots -->
+  <circle cx="150" cy="250" r="6" fill="#c9a84c"/>
+  <circle cx="650" cy="250" r="6" fill="#c9a84c"/>
+
+  <!-- Main title -->
+  <text x="400" y="320" text-anchor="middle" font-family="Georgia, serif" font-size="48" font-weight="bold" fill="url(#goldGrad)">VOYAGER AI</text>
+
+  <!-- Subtitle -->
+  <text x="400" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#8b8fa3" letter-spacing="4">AI TRAVEL CONCIERGE</text>
+
+  <!-- MCP badge -->
+  <g transform="translate(640, 30)">
+    <rect x="0" y="0" width="120" height="32" rx="4" fill="#8b5cf6" fill-opacity="0.2" stroke="#8b5cf6" stroke-width="1"/>
+    <text x="60" y="21" text-anchor="middle" font-family="monospace" font-size="12" fill="#8b5cf6">MCP PROTOCOL</text>
+  </g>
+
+  <!-- Ollama badge -->
+  <g transform="translate(40, 30)">
+    <rect x="0" y="0" width="100" height="32" rx="4" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1"/>
+    <text x="50" y="21" text-anchor="middle" font-family="monospace" font-size="12" fill="#3b82f6">OLLAMA</text>
+  </g>
+</svg>
