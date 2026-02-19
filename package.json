@@ -1,0 +1,57 @@
+{
+  "name": "mcp-travel-agent",
+  "version": "1.0.0",
+  "description": "Voyager AI - Travel Agent Demo with MCP Protocol Visualization powered by Ollama",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -n server,client -c blue,green \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "node --watch server/index.js",
+    "client:dev": "vite",
+    "server": "node server/index.js",
+    "client": "vite build && vite preview",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "bash scripts/startup.sh",
+    "stop": "bash scripts/cleanup.sh",
+    "logs": "tail -f logs/server.log",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "uuid": "^9.0.0",
+    "ws": "^8.16.0",
+    "winston": "^3.11.0",
+    "winston-daily-rotate-file": "^4.7.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.2",
+    "postcss": "^8.4.32",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.4.0",
+    "vite": "^5.0.10"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "travel-agent",
+    "ai",
+    "mcp",
+    "ollama",
+    "qwen",
+    "demo",
+    "voyager"
+  ],
+  "author": "Grajesh Chandra",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Grajesh-Chandra/mcp-travel-agent.git"
+  }
+}
