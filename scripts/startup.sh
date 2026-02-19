@@ -82,8 +82,15 @@ if [ ! -d "node_modules" ]; then
     npm install
 fi
 
-# Create logs directory
+# Create logs directory and clean old logs
 mkdir -p logs
+echo -e "${BLUE}Cleaning old log files...${NC}"
+if [ -d "logs" ] && [ "$(ls -A logs 2>/dev/null)" ]; then
+    rm -rf logs/*
+    echo -e "${GREEN}✓ Log files cleared${NC}"
+else
+    echo -e "${YELLOW}⚠ No log files to clean${NC}"
+fi
 
 # Clean up any existing processes
 echo -e "${BLUE}Cleaning up existing processes...${NC}"

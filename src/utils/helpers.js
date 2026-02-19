@@ -169,3 +169,28 @@ export const QUICK_PROMPTS = [
   { text: "Hotels in Bali under $150/night", icon: "🏨" },
   { text: "Create a full Rome itinerary for 4 people", icon: "🗺️" },
 ];
+
+/**
+ * Follow-up prompt suggestions shown after assistant responses
+ * Provides contextual suggestions for continued MCP interaction testing
+ */
+export const FOLLOW_UP_PROMPTS = [
+  { text: "Show me more options", icon: "🔍" },
+  { text: "What about cheaper alternatives?", icon: "💰" },
+  { text: "Add hotel recommendations", icon: "🏨" },
+  { text: "Check visa requirements for this destination", icon: "🛂" },
+  { text: "What's the weather like there?", icon: "🌤️" },
+  { text: "Find nearby restaurants", icon: "🍽️" },
+  { text: "Show available activities", icon: "🎭" },
+  { text: "Create a daily itinerary", icon: "📅" },
+  { text: "What are the must-see attractions?", icon: "🏛️" },
+  { text: "Find local transportation options", icon: "🚕" },
+];
+
+/**
+ * Get a randomized subset of follow-up prompts
+ */
+export function getRandomFollowUpPrompts(count = 3) {
+  const shuffled = [...FOLLOW_UP_PROMPTS].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+}

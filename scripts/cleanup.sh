@@ -37,13 +37,21 @@ for port in 3000 3001; do
     fi
 done
 
+# Clean log files (always)
+echo -e "${BLUE}Cleaning log files...${NC}"
+if [ -d "logs" ] && [ "$(ls -A logs 2>/dev/null)" ]; then
+    rm -rf logs/*
+    echo -e "${GREEN}✓ Log files cleared${NC}"
+else
+    echo -e "${YELLOW}⚠ No log files to clean${NC}"
+fi
+
 # Optional: Clean build artifacts
-read -p "Clean build artifacts and logs? (y/N): " -n 1 -r
+read -p "Clean build artifacts (dist/)? (y/N): " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo -e "${BLUE}Cleaning build artifacts...${NC}"
     rm -rf dist 2>/dev/null && echo -e "${GREEN}✓ Removed dist/${NC}"
-    rm -rf logs/*.log 2>/dev/null && echo -e "${GREEN}✓ Cleared logs${NC}"
 fi
 
 # Optional: Clean node_modules

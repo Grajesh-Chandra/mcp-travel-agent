@@ -3,8 +3,8 @@
  * Main conversation interface with the AI travel agent
  */
 
-import React, { useState, useRef, useEffect } from 'react';
-import { parseMarkdown, QUICK_PROMPTS } from '../utils/helpers.js';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { parseMarkdown, QUICK_PROMPTS, FOLLOW_UP_PROMPTS } from '../utils/helpers.js';
 import ToolCallCard from './ToolCallCard.jsx';
 import TypingIndicator from './TypingIndicator.jsx';
 
@@ -84,11 +84,18 @@ function ChatPanel({ messages, isLoading, onSendMessage, onClearChat, currentToo
           </div>
         )}
 
-        {messages.map((message) => (
+        {messages.map((message, index) => (
           <MessageBubble
             key={message.id}
             message={message}
             currentToolCall={message.isLoading ? currentToolCall : null}
+            isLastAssistantMessage={
+              message.role === 'assistant' &&
+              !message.isLoading &&
+              index === messages.length - 1
+            }
+            onSuggestionClick={handleQuickPrompt}
+            isLoading={isLoading}
           />
         ))}
 
@@ -188,9 +195,22 @@ function ChatPanel({ messages, isLoading, onSendMessage, onClearChat, currentToo
 /**
  * Message Bubble Component
  */
-function MessageBubble({ message, currentToolCall }) {
+function MessageBubble({ message, currentToolCall, isLastAssistantMessage, onSuggestionClick, isLoading }) {
   const isUser = message.role === 'user';
   const isError = message.isError;
+
+  // Get a stable subset of follow-up prompts for this message
+  const followUpPrompts = useMemo(() => {
+    if (!isLastAssistantMessage || isError) return [];
+    // Use message id as seed for consistent prompts per message
+    const seed = message.id?.charCodeAt(0) || 0;
+    const shuffled = [...FOLLOW_UP_PROMPTS].sort((a, b) => {
+      const hashA = a.text.charCodeAt(0) + seed;
+      const hashB = b.text.charCodeAt(0) + seed;
+      return hashA - hashB;
+    });
+    return shuffled.slice(0, 4);
+  }, [isLastAssistantMessage, isError, message.id]);
 
   return (
     <div
@@ -244,6 +264,23 @@ function MessageBubble({ message, currentToolCall }) {
                 ({message.iterations} iteration{message.iterations > 1 ? 's' : ''})
               </span>
             )}
+          </div>
+        )}
+
+        {/* Follow-up suggestions after assistant response */}
+        {isLastAssistantMessage && followUpPrompts.length > 0 && (
+          <div className="mt-3 flex flex-wrap gap-2">
+            {followUpPrompts.map((prompt, idx) => (
+              <button
+                key={idx}
+                onClick={() => onSuggestionClick(prompt.text)}
+                disabled={isLoading}
+                className="px-3 py-1.5 bg-navy-800/70 hover:bg-navy-700 border border-navy-600 hover:border-gold-500/50 rounded-full text-xs text-gray-300 hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-1.5 shadow-sm"
+              >
+                <span>{prompt.icon}</span>
+                <span>{prompt.text}</span>
+              </button>
+            ))}
           </div>
         )}
       </div>
